@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "PROJECT_NAME"
+abstract: "One-line description of what this project does."
+type: software
+authors:
+  - family-names: "Endes"
+    given-names: "Eray"
+    alias: "erayendes"
+repository-code: "https://github.com/erayendes/REPO"
+url: "https://github.com/erayendes/REPO"
+license: MIT
+version: "0.1.0"
+date-released: "YYYY-MM-DD"
+keywords:
+  - keyword-one
+  - keyword-two

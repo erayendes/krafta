@@ -1,0 +1,37 @@
+# The one workflow every project starts with. Its real value here is the pinning
+# convention: every action is a full commit SHA with its release tag in a trailing
+# comment. A moving tag (@v4) can be repointed at malicious code by whoever owns the
+# action; a SHA cannot. Dependabot reads the comment and bumps both together, so the
+# lock costs nothing to maintain — see .github/dependabot.yml.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Superseded runs on the same ref are pointless; cancel them.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    # This name is the required status check a branch ruleset asks for.
+    # Rename it and you must update the ruleset too (scripts/harden-public-repo.sh).
+    name: Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Replace this step with the project's own checks — the toolchain setup
+      # (actions/setup-node, setup-python, swift-actions/setup-swift…), then lint,
+      # typecheck, test, build. Pin every action you add to a SHA, as above.
+      - name: No checks configured yet
+        run: echo "CI runs, but this project has not declared its checks yet."

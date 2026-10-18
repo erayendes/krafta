@@ -18,10 +18,8 @@ permissions:
   contents: read
 
 jobs:
-  check:
-    # This name is the required status check a branch ruleset asks for.
-    # Rename it and you must update the ruleset too (scripts/harden-public-repo.sh).
-    name: Check
+  test:
+    name: Test (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -59,3 +57,16 @@ jobs:
           name: test-results-node-${{ matrix.node }}
           path: test-results/
           retention-days: 14
+
+  check:
+    # This name is the required status check a branch ruleset asks for. It passes only
+    # when every test job passed, so the ruleset needs one name for the whole matrix.
+    # Rename it and you must update the ruleset too (scripts/harden-public-repo.sh).
+    name: Check
+    needs: test
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: All test jobs passed
+        run: test "${{ needs.test.result }}" = "success"

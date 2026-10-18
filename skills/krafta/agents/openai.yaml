@@ -1,0 +1,4 @@
+interface:
+  display_name: "krafta"
+  short_description: "Review interfaces and prove it with measurements"
+  default_prompt: "Use $krafta to review this interface, run the krafta gate, and fix what it finds while preserving the design language."

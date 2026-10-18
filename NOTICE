@@ -1,0 +1,95 @@
+krafta
+Copyright (c) 2026 Eray Endeş
+Licensed under the MIT License. See LICENSE.
+
+krafta combines and adapts two open-source projects. Their notices follow.
+
+==============================================================================
+lintapple
+https://github.com/gholtzap/lintapple
+Copyright (c) 2026 Gavin Holtzapple
+MIT License
+
+Adapted material: the check engine in src/check/ (design-policy rules, rendered
+geometry, contrast and SVG contrast, accessibility rules, interaction plans and
+widget keyboard checks, browser setup), src/playwright.ts, src/cli-error.ts,
+examples/good.html, examples/ui.css, and the tests in test/check-*.test.ts.
+Changes: theme toggles (class and attribute), storage state, CHROME_PATH,
+krafta.config.json loading, and use of the engine inside krafta audit.
+
+==============================================================================
+interface-craft
+https://github.com/harun-yardimci/interface-craft
+Copyright (c) 2026 Harun Yardimci
+MIT License
+
+Adapted material: the render audit in src/audit/ (from render_audit.mjs), the
+static scanners in src/scan/ (from theme_audit.py, token_audit.py and
+hit_area_audit.py, now in TypeScript), and the agent skill in skills/krafta/
+(SKILL.md and references/). Changes: ported to strict TypeScript, gate rules
+run in the same audit pass, scanner exceptions with reasons, inline
+krafta-ignore comments, and commands that use the krafta CLI.
+
+interface-craft in turn adapts the following works (paraphrased and
+reconciled; no files copied verbatim). Their notices are kept here because the
+skill references carry that material.
+
+make-interfaces-feel-better
+https://github.com/jakubkrehel/make-interfaces-feel-better
+Copyright (c) 2026 Jakub Krehel - MIT License
+Adapted: visual-craft values in skills/krafta/references/visual-craft.md
+(concentric radius, layered shadows, image outlines, typography, motion and
+performance defaults).
+
+jakubkrehel/skills
+https://github.com/jakubkrehel/skills
+Copyright (c) 2026 Jakub Krehel - MIT License
+Adapted: break / state-machine / variant ideas
+(references/stress-and-states.md), typography roles, size floors, grouping
+and control spacing (references/visual-craft.md), escalation triggers and
+cheapest-fix order (SKILL.md).
+
+emilkowalski/skills
+https://github.com/emilkowalski/skills
+Copyright (c) 2026 Emil Kowalski - MIT License
+Adapted: the motion section of references/visual-craft.md (frequency gate,
+easing tokens, durations, interruptibility, gestures, performance).
+
+Taste Skill
+https://github.com/Leonxlnx/taste-skill
+Copyright (c) 2026 Leonxlnx - MIT License
+Adapted: generic-look tells, copy tells and the logo/category tests in
+references/generic-tells.md.
+
+Impeccable
+https://github.com/pbakaus/impeccable
+Copyright 2025 Paul Bakaus - Apache License, Version 2.0
+https://www.apache.org/licenses/LICENSE-2.0
+Adapted: surface modes and direction before code
+(references/generic-tells.md), anti-pattern catalogue, OKLCH palette guidance
+(references/theming.md), persona pass (references/visual-scan.md), the
+interactive-state list (references/interaction-and-feedback.md). Changes:
+rules rewritten in other words, reconciled with the skill's priorities, and
+scoped by surface type.
+
+==============================================================================
+MIT License text, which applies to each MIT work above with its own copyright
+line:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

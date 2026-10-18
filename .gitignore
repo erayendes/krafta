@@ -1,0 +1,8 @@
+node_modules/
+dist/
+krafta-audit/
+krafta-tiles/
+test-results/
+playwright-report/
+*.tmp
+.DS_Store

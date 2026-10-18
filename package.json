@@ -1,0 +1,66 @@
+{
+  "name": "krafta",
+  "version": "0.1.0",
+  "description": "Check, audit and scan interfaces against explicit design rules. A CI gate and an agent review in one package.",
+  "license": "MIT",
+  "author": "Eray Endeş (https://github.com/erayendes)",
+  "homepage": "https://github.com/erayendes/krafta#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erayendes/krafta.git"
+  },
+  "bugs": "https://github.com/erayendes/krafta/issues",
+  "keywords": [
+    "ui",
+    "ux",
+    "lint",
+    "design-system",
+    "accessibility",
+    "playwright",
+    "agent-skill",
+    "claude-code",
+    "design-review"
+  ],
+  "type": "module",
+  "bin": {
+    "krafta": "./dist/bin/krafta.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
+    "./playwright": {
+      "types": "./dist/src/playwright.d.ts",
+      "default": "./dist/src/playwright.js"
+    }
+  },
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist/src",
+    "dist/bin",
+    "skills",
+    "schema",
+    "examples",
+    "README.md",
+    "NOTICE"
+  ],
+  "scripts": {
+    "build": "tsc && node -e \"for (const f of ['good.html', 'ui.css']) require('fs').cpSync('examples/' + f, 'dist/examples/' + f)\"",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test --test-concurrency=2 dist/test/*.test.js",
+    "test:playwright": "npm run build && playwright test --config dist/examples/playwright/playwright.config.js",
+    "prepack": "npm run build"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "axe-core": "4.14.0",
+    "playwright": "1.63.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3"
+  }
+}

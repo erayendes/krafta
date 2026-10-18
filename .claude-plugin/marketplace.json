@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "krafta",
+  "description": "krafta agent skill",
+  "owner": {
+    "name": "Eray Endeş",
+    "url": "https://github.com/erayendes"
+  },
+  "plugins": [
+    {
+      "name": "krafta",
+      "description": "Review, improve, or build interfaces and prove it with measurements: a design-policy gate, a rendered-page audit and a static source scan.",
+      "version": "0.1.0",
+      "source": "./",
+      "category": "design"
+    }
+  ]
+}

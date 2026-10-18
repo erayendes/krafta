@@ -1,0 +1,13 @@
+{
+  "name": "krafta",
+  "version": "0.1.0",
+  "description": "Review, improve, or build interfaces and prove it with measurements: a design-policy gate, a rendered-page audit and a static source scan.",
+  "author": {
+    "name": "Eray Endeş",
+    "url": "https://github.com/erayendes"
+  },
+  "homepage": "https://github.com/erayendes/krafta",
+  "repository": "https://github.com/erayendes/krafta",
+  "license": "MIT",
+  "keywords": ["ui", "ux", "design-review", "accessibility", "lint", "playwright", "skill"]
+}

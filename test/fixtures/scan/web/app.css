@@ -1,0 +1,5 @@
+:root { --surface: #ffffff; }
+.card { padding: 12px; border-radius: 8px; color: #333; }
+.hero { padding: 18px 13px; font-size: 15px; }
+.veil { position: absolute; inset: 0; }
+.chip { border-radius: 9px; margin: 6px; }

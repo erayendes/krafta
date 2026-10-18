@@ -1,0 +1,578 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/erayendes/krafta/main/schema/krafta.config.schema.json",
+  "title": "krafta config",
+  "description": "Design policy and settings for krafta check, audit and scan.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Default page for krafta check and krafta audit."
+    },
+    "theme": {
+      "description": "How the app switches between light and dark.",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strategy"
+          ],
+          "properties": {
+            "strategy": {
+              "const": "media",
+              "description": "The app follows prefers-color-scheme."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strategy",
+            "name"
+          ],
+          "properties": {
+            "strategy": {
+              "const": "class"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Class on <html> that turns on dark mode, for example dark."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strategy",
+            "name",
+            "dark"
+          ],
+          "properties": {
+            "strategy": {
+              "const": "attribute"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Attribute on <html>, for example data-theme."
+            },
+            "dark": {
+              "type": "string",
+              "minLength": 1
+            },
+            "light": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Value for light mode. Without it, the attribute is removed."
+            }
+          }
+        }
+      ]
+    },
+    "check": {
+      "description": "The gate: design-policy rules that fail CI.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fonts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "default": [
+            "system-ui",
+            "-apple-system",
+            "BlinkMacSystemFont",
+            "SF Pro Text",
+            "SF Pro Display"
+          ],
+          "description": "Approved font families."
+        },
+        "fontSizes": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "minItems": 1,
+          "default": [
+            12,
+            14,
+            16,
+            18,
+            20,
+            24,
+            32,
+            40,
+            48,
+            64
+          ],
+          "description": "Approved text sizes in px."
+        },
+        "typeRules": {
+          "type": "array",
+          "default": [
+            {
+              "selector": "h1",
+              "sizes": [
+                24,
+                32,
+                40,
+                48,
+                64
+              ]
+            },
+            {
+              "selector": "h2",
+              "sizes": [
+                20,
+                24,
+                32
+              ]
+            },
+            {
+              "selector": "h3",
+              "sizes": [
+                18,
+                20,
+                24
+              ]
+            },
+            {
+              "selector": "button, [role=button]",
+              "sizes": [
+                14,
+                16
+              ]
+            }
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "selector",
+              "sizes"
+            ],
+            "properties": {
+              "selector": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sizes": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "minItems": 1
+              }
+            }
+          }
+        },
+        "minControlSize": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "default": 15
+        },
+        "controlSizeRules": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "selector",
+              "minSize"
+            ],
+            "properties": {
+              "selector": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minSize": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "minViewportWidth": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10000
+              },
+              "maxViewportWidth": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10000
+              }
+            }
+          }
+        },
+        "minControlGap": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "default": 8
+        },
+        "minControlInset": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "default": 8
+        },
+        "controlContainers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "default": [
+            "[data-ui-container]"
+          ]
+        },
+        "minLayoutGap": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "default": 8
+        },
+        "bannedCopy": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": [
+            "unlock your potential",
+            "seamlessly",
+            "game-changing"
+          ]
+        },
+        "viewports": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "width",
+              "height"
+            ],
+            "properties": {
+              "width": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10000
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10000
+              }
+            }
+          },
+          "default": [
+            {
+              "width": 390,
+              "height": 844
+            },
+            {
+              "width": 1440,
+              "height": 900
+            }
+          ]
+        },
+        "colorSchemes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "light",
+              "dark"
+            ]
+          },
+          "default": [
+            "light"
+          ]
+        },
+        "exceptions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "selector",
+              "rules",
+              "reason"
+            ],
+            "properties": {
+              "selector": {
+                "type": "string",
+                "minLength": 1
+              },
+              "rules": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "enum": [
+                    "font-family",
+                    "font-size",
+                    "copy",
+                    "control-size",
+                    "control-gap",
+                    "control-inset",
+                    "layout-gap",
+                    "layout-alignment",
+                    "tabular-numbers",
+                    "numeric-alignment",
+                    "nested-radius",
+                    "root-background",
+                    "horizontal-overflow",
+                    "viewport-bounds",
+                    "content-clipping",
+                    "content-overflow",
+                    "text-contrast",
+                    "font-loading",
+                    "accessible-name",
+                    "form-label",
+                    "aria-reference",
+                    "label-consistency",
+                    "control-state",
+                    "keyboard-operation",
+                    "focus-visible",
+                    "focus-obscured",
+                    "dialog-focus",
+                    "icon-button-tooltip",
+                    "target-size"
+                  ]
+                }
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "audit": {
+      "description": "The review: settings for krafta audit.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "viewports": {
+          "type": "array",
+          "minItems": 1,
+          "default": [
+            {
+              "width": 375,
+              "height": 812
+            },
+            {
+              "width": 768,
+              "height": 1024
+            },
+            {
+              "width": 1440,
+              "height": 900
+            }
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "width",
+              "height"
+            ],
+            "properties": {
+              "width": {
+                "type": "integer",
+                "minimum": 100,
+                "maximum": 4000
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 100,
+                "maximum": 4000
+              }
+            }
+          }
+        },
+        "themes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "light",
+              "dark"
+            ]
+          },
+          "default": [
+            "light",
+            "dark"
+          ]
+        },
+        "stress": {
+          "type": "boolean",
+          "default": false,
+          "description": "Add long-text and large-text runs."
+        },
+        "states": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string",
+            "pattern": "^[\\w-]{1,40}$"
+          },
+          "description": "States to visit with ?__state=name."
+        },
+        "stateParam": {
+          "type": "string",
+          "pattern": "^[\\w-]{1,40}$",
+          "default": "__state"
+        },
+        "maxPerRule": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000,
+          "default": 25
+        },
+        "focus": {
+          "type": "boolean",
+          "default": true
+        },
+        "tiles": {
+          "type": "boolean",
+          "default": true
+        },
+        "maxHeight": {
+          "type": "integer",
+          "minimum": 500,
+          "maximum": 8000,
+          "default": 8000
+        },
+        "wait": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 60000,
+          "default": 800,
+          "description": "Extra settle time in ms after load."
+        }
+      }
+    },
+    "scan": {
+      "description": "Static source scan for theme mixes, token drift and hit areas.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "default": [
+            "."
+          ]
+        },
+        "scanners": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "theme",
+              "tokens",
+              "hit-area"
+            ]
+          },
+          "default": [
+            "theme",
+            "tokens",
+            "hit-area"
+          ]
+        },
+        "grid": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "default": 4
+        },
+        "maxPerRule": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 40
+        },
+        "failOn": {
+          "enum": [
+            "high",
+            "warn",
+            "info",
+            "never"
+          ],
+          "default": "high"
+        },
+        "exceptions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "rules",
+              "reason"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Glob relative to the scan root, for example src/brand/**."
+              },
+              "rules": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "enum": [
+                    "theme/fixed-bg",
+                    "theme/fixed-stroke",
+                    "theme/scheme-override",
+                    "theme/mix",
+                    "theme/fixed-color",
+                    "theme/tw-no-dark",
+                    "theme/tw-mix",
+                    "theme/inline-color",
+                    "theme/class-override",
+                    "theme/asset-no-dark",
+                    "theme/android-no-night",
+                    "theme/web-no-color-scheme",
+                    "tokens/fixed-font",
+                    "tokens/off-grid",
+                    "tokens/one-off",
+                    "tokens/sprawl",
+                    "hit-area/clip-overflow",
+                    "hit-area/small-target",
+                    "hit-area/tap-catcher",
+                    "hit-area/overlay-hit"
+                  ]
+                }
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

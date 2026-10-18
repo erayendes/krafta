@@ -12,21 +12,18 @@ updates:
       actions:
         patterns: ['*']
 
-  # Uncomment and adjust the block for this project's stack.
-
-  # - package-ecosystem: npm
-  #   directory: /
-  #   schedule:
-  #     interval: weekly
-  #   commit-message:
-  #     prefix: chore
-  #   open-pull-requests-limit: 5
-  #   groups:
-  #     dev-dependencies:
-  #       dependency-type: development
-  #     production:
-  #       dependency-type: production
-  #       update-types: ['minor', 'patch']
+  # playwright and axe-core are pinned to exact versions on purpose: a browser or rule
+  # update can change measurements, so each bump is reviewed on its own.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+    open-pull-requests-limit: 5
+    groups:
+      dev-dependencies:
+        dependency-type: development
 
   # - package-ecosystem: swift
   #   directory: /

@@ -43,7 +43,15 @@ jobs:
       - run: npm test
       - run: npm run test:playwright
       # The package must contain the CLI, the types, the skill and the schema.
-      - run: npm pack --dry-run --json | node -e "const files = JSON.parse(require('fs').readFileSync(0, 'utf8'))[0].files.map(f => f.path); for (const f of ['dist/bin/krafta.js', 'dist/src/index.d.ts', 'dist/src/check/defaults.json', 'skills/krafta/SKILL.md', 'schema/krafta.config.schema.json', 'NOTICE']) if (!files.includes(f)) { console.error('Missing from package: ' + f); process.exit(1); }"
+      - name: Package contents
+        run: |
+          npm pack --dry-run --json > pack.json
+          node -e "
+            const files = JSON.parse(require('fs').readFileSync('pack.json', 'utf8'))[0].files.map(f => f.path);
+            const required = ['dist/bin/krafta.js', 'dist/src/index.d.ts', 'dist/src/check/defaults.json', 'skills/krafta/SKILL.md', 'schema/krafta.config.schema.json', 'NOTICE'];
+            const missing = required.filter(f => !files.includes(f));
+            if (missing.length) { console.error('Missing from package: ' + missing.join(', ')); process.exit(1); }
+          "
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: ${{ failure() }}

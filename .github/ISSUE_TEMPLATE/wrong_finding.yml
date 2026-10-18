@@ -1,0 +1,57 @@
+name: Wrong finding
+description: krafta reported a problem that is not there, or missed one that is.
+labels: ["finding"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gate findings should be right; audit and scan hits are leads, so some noise is expected.
+        A small HTML page or source snippet that shows the case helps most.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind?
+      options:
+        - False positive (reported, but the UI is fine)
+        - False negative (a real problem was not reported)
+    validations:
+      required: true
+
+  - type: input
+    id: rule
+    attributes:
+      label: Rule
+      description: The rule id from the report.
+      placeholder: text-contrast, layout-gap, theme/fixed-bg ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: finding
+    attributes:
+      label: The finding
+      description: Paste the finding as krafta printed it (or from --json).
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is it wrong?
+      description: What is actually on the page or in the code?
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Minimal example
+      description: HTML, CSS, or source that reproduces it. Screenshots are welcome.
+
+  - type: input
+    id: version
+    attributes:
+      label: Versions
+      description: Output of `npx krafta --version` and `node --version`.

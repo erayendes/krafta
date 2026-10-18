@@ -2,9 +2,9 @@
 
 🇬🇧 [English](#english) · 🇹🇷 [Türkçe](#türkçe)
 
-### English
+## English
 
-## Reporting a Vulnerability
+### Reporting a vulnerability
 
 Please don't open a public issue or share it anywhere public. Instead;
 - A description of the issue,
@@ -26,9 +26,9 @@ Unless stated otherwise in the README or CHANGELOG, only the latest released ver
 
 ---
 
-### Türkçe
+## Türkçe
 
-## Açık Bildirme
+### Açık bildirme
 
 Güvenlik sorunları için lütfen açık bir issue açmayın ya da açık bir ortamda paylaşmayın. Bunun yerine;
 - Sorunun açıklaması,

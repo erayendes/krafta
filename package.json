@@ -10,16 +10,27 @@
     "url": "git+https://github.com/erayendes/krafta.git"
   },
   "bugs": "https://github.com/erayendes/krafta/issues",
+  "funding": "https://github.com/sponsors/erayendes",
   "keywords": [
     "ui",
     "ux",
     "lint",
+    "design-lint",
     "design-system",
+    "design-review",
     "accessibility",
+    "a11y",
+    "wcag",
+    "contrast",
+    "dark-mode",
     "playwright",
+    "swiftui",
+    "jetpack-compose",
+    "tailwind",
     "agent-skill",
     "claude-code",
-    "design-review"
+    "codex",
+    "cli"
   ],
   "type": "module",
   "bin": {

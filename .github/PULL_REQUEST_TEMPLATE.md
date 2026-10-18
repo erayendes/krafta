@@ -6,8 +6,9 @@
 
 ## Checklist
 
-- [ ] Tests and lint/typecheck pass
-- [ ] Docs updated if behaviour changed
+- [ ] `npm run typecheck`, `npm test` and `npm run test:playwright` pass
+- [ ] README (both languages), skill references and CHANGELOG updated if behaviour changed
+- [ ] New or changed rules have a test in `test/`
 - [ ] No credentials, private keys, or secrets in the diff
 
 ## How this was verified

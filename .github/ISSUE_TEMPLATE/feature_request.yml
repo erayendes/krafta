@@ -2,6 +2,21 @@ name: Feature request
 description: Suggest an improvement or a new capability.
 labels: ["enhancement"]
 body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - A new gate rule (krafta check)
+        - The audit report (krafta audit)
+        - The source scan (krafta scan)
+        - Config
+        - Agent skill
+        - Playwright / API
+        - Other
+    validations:
+      required: true
+
   - type: textarea
     id: problem
     attributes:

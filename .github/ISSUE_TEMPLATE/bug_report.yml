@@ -6,6 +6,23 @@ body:
     attributes:
       value: |
         Please remove secrets, access tokens, private keys, and personal data before posting.
+        If krafta reported a finding you think is wrong, use the "Wrong finding" template instead.
+
+  - type: dropdown
+    id: command
+    attributes:
+      label: Which part?
+      options:
+        - krafta check
+        - krafta audit
+        - krafta scan
+        - krafta tile / init / skill
+        - expectUI (Playwright)
+        - API
+        - Agent skill
+        - Other
+    validations:
+      required: true
 
   - type: textarea
     id: what-happened
@@ -19,10 +36,19 @@ body:
     id: reproduce
     attributes:
       label: How can we reproduce it?
+      description: The exact command, and the relevant part of krafta.config.json.
       placeholder: |
-        1. ...
+        1. npx krafta audit http://localhost:3000 --stress
         2. ...
-        3. ...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versions
+      description: Output of `npx krafta --version` and `node --version`, and your OS.
+      placeholder: krafta 0.1.0, Node 22, macOS 15
     validations:
       required: true
 
@@ -31,3 +57,4 @@ body:
     attributes:
       label: Logs or screenshots
       description: Add any useful output. Redact sensitive information.
+      render: shell

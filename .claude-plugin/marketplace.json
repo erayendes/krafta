@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "krafta",
-  "description": "krafta agent skill",
+  "description": "krafta: review interfaces and prove it with measurements",
   "owner": {
     "name": "Eray Endeş",
     "url": "https://github.com/erayendes"

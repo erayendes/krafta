@@ -9,5 +9,5 @@
   "homepage": "https://github.com/erayendes/krafta",
   "repository": "https://github.com/erayendes/krafta",
   "license": "MIT",
-  "keywords": ["ui", "ux", "design-review", "accessibility", "lint", "playwright", "skill"]
+  "keywords": ["ui", "ux", "design-review", "accessibility", "dark-mode", "lint", "playwright", "skill"]
 }
